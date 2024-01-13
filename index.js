@@ -12,16 +12,17 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("MongoDB connected"))
+  .then(() => {
+    console.log("MongoDB connected");
+    app.listen(PORT, () => {
+      console.log(`Server is listening on ${PORT}`);
+    });
+  })
   .catch((err) => console.error(err));
-
-app.listen(PORT, () => {
-  console.log(`Server is listening on ${PORT}`);
-});
 
 app.use(
   cors({
-    origin: ["https://localhost:3001/"],
+    origin: ["https://localhost:3000"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
